@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ifsutil">
+      <UniqueIdentifier>{19465af2-b85e-409b-ad32-35f64b8d8073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ulib">
+      <UniqueIdentifier>{e7dcc45c-2c51-4db7-89ac-f7d035fddf99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\untfs">
+      <UniqueIdentifier>{8d08cd53-2fe6-4567-8fb7-811b4695a1ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\ifsutil">
+      <UniqueIdentifier>{82e46de5-582e-457f-adfd-2d6419c5b912}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ulib">
+      <UniqueIdentifier>{18d04404-af26-4312-805c-f5ae6b821506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\untfs">
+      <UniqueIdentifier>{7428b833-904f-485a-a10b-936644985f42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="NtfsMarkBad.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\bigint.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\dcache.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\drive.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\ifssys.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\intstack.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\numset.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\secrun.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\supera.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ifsutil\src\volume.cxx">
+      <Filter>Source Files\ifsutil</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\array.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\arrayit.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\bitvect.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\clasdesc.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\contain.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\hmem.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\iterator.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\list.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\listit.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\mem.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\membmgr.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\membmgr2.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\message.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\object.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\path.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\seqcnt.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\sortcnt.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\system.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\ulib.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="ulib\src\wstring.cxx">
+      <Filter>Source Files\ulib</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\attrib.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\attrlist.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\attrrec.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\badfile.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\bitfrs.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\clusrun.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\extents.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\frs.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\frsstruc.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\indxbuff.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\indxroot.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\indxtree.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\largemcb.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\mft.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\mftfile.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\mftref.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\ntfsbit.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\ntfssa.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\ntfsvol.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\untfs.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\upcase.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+    <ClCompile Include="untfs\src\upfile.cxx">
+      <Filter>Source Files\untfs</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="my_ntddk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\bigint.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\bpb.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\dcache.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\drive.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\ifssys.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\intstack.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\numset.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\secrun.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\supera.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\untfs2.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ifsutil\inc\volume.hxx">
+      <Filter>Header Files\ifsutil</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\array.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\arrayit.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\bitvect.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\clasdesc.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\contain.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\cstring.h">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\hmem.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\ifsentry.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\iterator.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\list.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\listit.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\mem.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\membmgr.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\membmgr2.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\message.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\object.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\path.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\seqcnt.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\sortcnt.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\stack.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\system.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\ulib.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\ulibdef.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="ulib\inc\wstring.hxx">
+      <Filter>Header Files\ulib</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\attrib.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\attrlist.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\attrrec.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\badfile.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\bitfrs.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\clusrun.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\extents.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\frs.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\frsstruc.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\fsrtlp.h">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\indxbuff.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\indxroot.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\indxtree.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\mft.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\mftfile.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\mftinfo.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\mftref.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\ntfsbit.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\ntfssa.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\ntfsvol.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\untfs.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\upcase.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+    <ClInclude Include="untfs\inc\upfile.hxx">
+      <Filter>Header Files\untfs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.md" />
+  </ItemGroup>
+</Project>

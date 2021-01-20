@@ -1,0 +1,105 @@
+/*++
+
+Module Name:
+
+	listit.hxx
+
+Abstract:
+
+    This is an implementation of iterator for LIST.
+
+--*/
+
+#pragma once
+
+#include "iterator.hxx"
+#include "list.hxx"
+
+DECLARE_CLASS( LIST_ITERATOR );
+
+class LIST_ITERATOR : public ITERATOR {
+
+    FRIEND class LIST;
+
+    public:
+
+        DECLARE_CONSTRUCTOR( LIST_ITERATOR );
+
+        DECLARE_CAST_MEMBER_FUNCTION( LIST_ITERATOR );
+
+         
+        BOOLEAN
+        Initialize(
+            IN  PCLIST  List
+            );
+
+        VIRTUAL
+        VOID
+        Reset(
+            );
+
+		VIRTUAL
+		POBJECT
+		GetCurrent(
+			);
+
+		VIRTUAL
+		POBJECT
+		GetNext(
+			);
+
+		VIRTUAL
+		POBJECT
+		GetPrevious(
+			);
+
+    private:
+
+        POBJECT_LIST_NODE   _current;
+        PCLIST              _list;
+
+         
+        VOID
+        Construct(
+            );
+
+};
+
+
+INLINE
+VOID
+LIST_ITERATOR::Construct(
+    )
+/*++
+
+Routine Description:
+
+    This routine resets LIST_ITERATOR.
+
+Arguments:
+
+    None.
+
+Return Value:
+
+    None.
+
+--*/
+{
+    _current = NULL;
+    _list = NULL;
+}
+
+
+INLINE
+BOOLEAN
+LIST_ITERATOR::Initialize(
+    IN  PCLIST List
+    )
+{
+    DebugAssert(List);
+    _list = List;
+    return TRUE;
+}
+
+

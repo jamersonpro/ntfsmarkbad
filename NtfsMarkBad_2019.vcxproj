@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6C848416-93D5-41FC-A4DD-4651B7C590B2}</ProjectGuid>
+    <RootNamespace>NtfsMarkBad_2019</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.30804.86</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformShortName)\$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>NtfsMarkBad32</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <TargetName>NtfsMarkBad</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(PlatformShortName)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>NtfsMarkBad32</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <TargetName>NtfsMarkBad</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)ulib\inc;$(ProjectDir)ifsutil\inc;$(ProjectDir)untfs\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AssemblerOutput>All</AssemblerOutput>
+      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ntdll.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib_x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)ulib\inc;$(ProjectDir)ifsutil\inc;$(ProjectDir)untfs\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <AssemblerOutput>All</AssemblerOutput>
+      <ProgramDataBaseFileName>$(IntDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <EnableFiberSafeOptimizations />
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ntdll.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib_x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <ImageHasSafeExceptionHandlers>
+      </ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)ulib\inc;$(ProjectDir)ifsutil\inc;$(ProjectDir)untfs\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerOutput>All</AssemblerOutput>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib_x32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ntdll.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)ulib\inc;$(ProjectDir)ifsutil\inc;$(ProjectDir)untfs\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AssemblerOutput>All</AssemblerOutput>
+      <OmitFramePointers>false</OmitFramePointers>
+      <EnableFiberSafeOptimizations />
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <AdditionalLibraryDirectories>$(ProjectDir)lib_x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ntdll.lib;Setupapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>
+      </ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ifsutil\src\bigint.cxx" />
+    <ClCompile Include="ifsutil\src\dcache.cxx" />
+    <ClCompile Include="ifsutil\src\drive.cxx" />
+    <ClCompile Include="ifsutil\src\ifssys.cxx" />
+    <ClCompile Include="ifsutil\src\intstack.cxx" />
+    <ClCompile Include="ifsutil\src\numset.cxx" />
+    <ClCompile Include="ifsutil\src\secrun.cxx" />
+    <ClCompile Include="ifsutil\src\supera.cxx" />
+    <ClCompile Include="ifsutil\src\volume.cxx" />
+    <ClCompile Include="NtfsMarkBad.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="ulib\src\array.cxx" />
+    <ClCompile Include="ulib\src\arrayit.cxx" />
+    <ClCompile Include="ulib\src\bitvect.cxx" />
+    <ClCompile Include="ulib\src\clasdesc.cxx" />
+    <ClCompile Include="ulib\src\contain.cxx" />
+    <ClCompile Include="ulib\src\hmem.cxx" />
+    <ClCompile Include="ulib\src\iterator.cxx" />
+    <ClCompile Include="ulib\src\list.cxx" />
+    <ClCompile Include="ulib\src\listit.cxx" />
+    <ClCompile Include="ulib\src\mem.cxx" />
+    <ClCompile Include="ulib\src\membmgr.cxx" />
+    <ClCompile Include="ulib\src\membmgr2.cxx" />
+    <ClCompile Include="ulib\src\message.cxx" />
+    <ClCompile Include="ulib\src\object.cxx" />
+    <ClCompile Include="ulib\src\path.cxx" />
+    <ClCompile Include="ulib\src\seqcnt.cxx" />
+    <ClCompile Include="ulib\src\sortcnt.cxx" />
+    <ClCompile Include="ulib\src\system.cxx" />
+    <ClCompile Include="ulib\src\ulib.cxx" />
+    <ClCompile Include="ulib\src\wstring.cxx" />
+    <ClCompile Include="untfs\src\attrib.cxx" />
+    <ClCompile Include="untfs\src\attrlist.cxx" />
+    <ClCompile Include="untfs\src\attrrec.cxx" />
+    <ClCompile Include="untfs\src\badfile.cxx" />
+    <ClCompile Include="untfs\src\bitfrs.cxx" />
+    <ClCompile Include="untfs\src\clusrun.cxx" />
+    <ClCompile Include="untfs\src\extents.cxx" />
+    <ClCompile Include="untfs\src\frs.cxx" />
+    <ClCompile Include="untfs\src\frsstruc.cxx" />
+    <ClCompile Include="untfs\src\indxbuff.cxx" />
+    <ClCompile Include="untfs\src\indxroot.cxx" />
+    <ClCompile Include="untfs\src\indxtree.cxx" />
+    <ClCompile Include="untfs\src\largemcb.cxx" />
+    <ClCompile Include="untfs\src\mft.cxx" />
+    <ClCompile Include="untfs\src\mftfile.cxx" />
+    <ClCompile Include="untfs\src\mftref.cxx" />
+    <ClCompile Include="untfs\src\ntfsbit.cxx" />
+    <ClCompile Include="untfs\src\ntfssa.cxx" />
+    <ClCompile Include="untfs\src\ntfsvol.cxx" />
+    <ClCompile Include="untfs\src\untfs.cxx" />
+    <ClCompile Include="untfs\src\upcase.cxx" />
+    <ClCompile Include="untfs\src\upfile.cxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="common.h" />
+    <ClInclude Include="ifsutil\inc\bigint.hxx" />
+    <ClInclude Include="ifsutil\inc\bpb.hxx" />
+    <ClInclude Include="ifsutil\inc\dcache.hxx" />
+    <ClInclude Include="ifsutil\inc\drive.hxx" />
+    <ClInclude Include="ifsutil\inc\ifssys.hxx" />
+    <ClInclude Include="ifsutil\inc\intstack.hxx" />
+    <ClInclude Include="ifsutil\inc\numset.hxx" />
+    <ClInclude Include="ifsutil\inc\secrun.hxx" />
+    <ClInclude Include="ifsutil\inc\supera.hxx" />
+    <ClInclude Include="ifsutil\inc\untfs2.hxx" />
+    <ClInclude Include="ifsutil\inc\volume.hxx" />
+    <ClInclude Include="my_ntddk.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="ulib\inc\array.hxx" />
+    <ClInclude Include="ulib\inc\arrayit.hxx" />
+    <ClInclude Include="ulib\inc\bitvect.hxx" />
+    <ClInclude Include="ulib\inc\clasdesc.hxx" />
+    <ClInclude Include="ulib\inc\contain.hxx" />
+    <ClInclude Include="ulib\inc\cstring.h" />
+    <ClInclude Include="ulib\inc\hmem.hxx" />
+    <ClInclude Include="ulib\inc\ifsentry.hxx" />
+    <ClInclude Include="ulib\inc\iterator.hxx" />
+    <ClInclude Include="ulib\inc\list.hxx" />
+    <ClInclude Include="ulib\inc\listit.hxx" />
+    <ClInclude Include="ulib\inc\mem.hxx" />
+    <ClInclude Include="ulib\inc\membmgr.hxx" />
+    <ClInclude Include="ulib\inc\membmgr2.hxx" />
+    <ClInclude Include="ulib\inc\message.hxx" />
+    <ClInclude Include="ulib\inc\object.hxx" />
+    <ClInclude Include="ulib\inc\path.hxx" />
+    <ClInclude Include="ulib\inc\seqcnt.hxx" />
+    <ClInclude Include="ulib\inc\sortcnt.hxx" />
+    <ClInclude Include="ulib\inc\stack.hxx" />
+    <ClInclude Include="ulib\inc\system.hxx" />
+    <ClInclude Include="ulib\inc\ulib.hxx" />
+    <ClInclude Include="ulib\inc\ulibdef.hxx" />
+    <ClInclude Include="ulib\inc\wstring.hxx" />
+    <ClInclude Include="untfs\inc\attrib.hxx" />
+    <ClInclude Include="untfs\inc\attrlist.hxx" />
+    <ClInclude Include="untfs\inc\attrrec.hxx" />
+    <ClInclude Include="untfs\inc\badfile.hxx" />
+    <ClInclude Include="untfs\inc\bitfrs.hxx" />
+    <ClInclude Include="untfs\inc\clusrun.hxx" />
+    <ClInclude Include="untfs\inc\extents.hxx" />
+    <ClInclude Include="untfs\inc\frs.hxx" />
+    <ClInclude Include="untfs\inc\frsstruc.hxx" />
+    <ClInclude Include="untfs\inc\fsrtlp.h" />
+    <ClInclude Include="untfs\inc\indxbuff.hxx" />
+    <ClInclude Include="untfs\inc\indxroot.hxx" />
+    <ClInclude Include="untfs\inc\indxtree.hxx" />
+    <ClInclude Include="untfs\inc\mft.hxx" />
+    <ClInclude Include="untfs\inc\mftfile.hxx" />
+    <ClInclude Include="untfs\inc\mftinfo.hxx" />
+    <ClInclude Include="untfs\inc\mftref.hxx" />
+    <ClInclude Include="untfs\inc\ntfsbit.hxx" />
+    <ClInclude Include="untfs\inc\ntfssa.hxx" />
+    <ClInclude Include="untfs\inc\ntfsvol.hxx" />
+    <ClInclude Include="untfs\inc\untfs.hxx" />
+    <ClInclude Include="untfs\inc\upcase.hxx" />
+    <ClInclude Include="untfs\inc\upfile.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="README.md" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
