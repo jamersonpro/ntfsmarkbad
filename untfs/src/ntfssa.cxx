@@ -685,8 +685,7 @@ Return Value:
 
 BOOLEAN
 NTFS_SA::MarkBad(
-    IN      __int64   firstPhysicalDriveSector,
-    IN      __int64   lastPhysicalDriveSector,
+    IN const std::vector<sectors_range>& physicalDriveSectorsTargets,
     IN OUT  PMESSAGE    Message
 )
 {
@@ -761,7 +760,6 @@ NTFS_SA::MarkBad(
         !UpcaseFile.QueryAttribute(&UpcaseAttribute, &Error, $DATA) ||
         !UpcaseTable.Initialize(&UpcaseAttribute))
     {
-
         //DebugPrint("UNTFS RecoverFile:Can't get the upcase table.\n");
 
         Message->Out("The volume is corrupt. Run CHKDSK.");
@@ -797,13 +795,11 @@ NTFS_SA::MarkBad(
     {
         return FALSE;
     }
-    
 
-    if (!MarkInFreeSpace(MftFile.GetMasterFileTable(), firstPhysicalDriveSector, lastPhysicalDriveSector, &BadClusterList, &BadClusterFile, Message))
+    if (!MarkInFreeSpace(MftFile.GetMasterFileTable(), physicalDriveSectorsTargets, &BadClusterList, &BadClusterFile, Message))
     {
         return FALSE;
     }
-	
 
     if (BadClusterList.QueryCardinality() != 0)
     {
@@ -811,7 +807,11 @@ NTFS_SA::MarkBad(
         // file and the MFT and write the bitmap.  If no bad clusters were
         // found, then these structures will be unchanged.
 
-        Message->Out("Adding ", BadClusterList.QueryCardinality().GetLowPart(), " clusters to the Bad Clusters File...");
+        ULONG badClusterCount = BadClusterList.QueryCardinality().GetLowPart();
+        if (badClusterCount == 1)
+            Message->Out("Adding 1 cluster to the Bad Clusters File...");
+        else
+            Message->Out("Adding ", badClusterCount, " clusters to the Bad Clusters File...");
 
         if (BadClusterFile.Add(&BadClusterList))
         {
@@ -831,7 +831,10 @@ NTFS_SA::MarkBad(
     }
     else
     {
-        Message->Out("No clusters to add to the Bad Clusters File.");
+        if (!physicalDriveSectorsTargets.empty())
+        {
+            Message->Out("No clusters to add to the Bad Clusters File.");
+        }
     }
 
     return TRUE;
@@ -841,8 +844,7 @@ NTFS_SA::MarkBad(
 BOOLEAN
 NTFS_SA::MarkInFreeSpace(
     IN OUT  PNTFS_MASTER_FILE_TABLE Mft,
-    IN      __int64   firstPhysicalDriveSector,
-    IN      __int64   lastPhysicalDriveSector,
+    IN      const std::vector<sectors_range>& physicalDriveSectorsTargets,
     IN OUT  PNUMBER_SET             BadClusters,
     IN      PNTFS_BAD_CLUSTER_FILE  BadClusterFile,
     IN OUT  PMESSAGE                Message
@@ -867,14 +869,8 @@ Return Value:
 
 --*/
 {
-    BIG_INT firstPhysicalDriveSectorToMark = (unsigned __int64)firstPhysicalDriveSector;
-    BIG_INT lastPhysicalDriveSectorToMark = (unsigned __int64)lastPhysicalDriveSector;
-
     PLOG_IO_DP_DRIVE    drive;
     PNTFS_BITMAP        bitmap;
-    BIG_INT             i;
-    //ULONG               percent_done;
-    //BIG_INT             checked, total_to_check;
     ULONG               cluster_factor;
 
     Message->Out("Scanning free space...");
@@ -887,67 +883,67 @@ Return Value:
     Message->Out("First volume sector: ", firstDriveSector.GetQuadPart());
     Message->Out("Last volume sector: ", lastDriveSector.GetQuadPart());
 
-	
     bitmap = Mft->GetVolumeBitmap();
     cluster_factor = Mft->QueryClusterFactor();
-    //max_len = bitmap->QuerySize() / 20 + 1;
-    //total_to_check = bitmap->QueryFreeClusters();
-    //checked = 0;
-
-    //percent_done = 0;
-
+    
     BIG_INT skippedAlreadyBadClusters = 0;
     BIG_INT skippedInUseClusters = 0;
     BIG_INT markedClusters = 0;
-    for (i = 0; i < bitmap->QuerySize(); i += 1)
+
+    BIG_INT lastProcessedCluster = -1;
+
+    for (std::vector<sectors_range>::const_iterator physicalDriveSectorsPair = physicalDriveSectorsTargets.begin(); physicalDriveSectorsPair != physicalDriveSectorsTargets.end(); ++physicalDriveSectorsPair)
     {
-        BIG_INT clusterNumber = i;
-        BIG_INT firstVolumeSectorOfCluster = clusterNumber * cluster_factor;
-        BIG_INT lastVolumeSectorOfCluster = firstVolumeSectorOfCluster + cluster_factor - 1;
+        BIG_INT firstPhysicalDriveSectorToMark = (unsigned __int64)physicalDriveSectorsPair->firstSector;
+        if (firstPhysicalDriveSectorToMark < firstDriveSector) firstPhysicalDriveSectorToMark = firstDriveSector;
+        if (firstPhysicalDriveSectorToMark > lastDriveSector) continue;
 
-        BIG_INT firstDriveSectorOfCluster = firstDriveSector + firstVolumeSectorOfCluster;
-        BIG_INT lastDriveSectorOfCluster = firstDriveSector + lastVolumeSectorOfCluster;
+    	BIG_INT lastPhysicalDriveSectorToMark = (unsigned __int64)physicalDriveSectorsPair->lastSector;
+        if (lastPhysicalDriveSectorToMark > lastDriveSector) lastPhysicalDriveSectorToMark = lastDriveSector;
+        if (lastPhysicalDriveSectorToMark < firstDriveSector) continue;
 
-        if (lastDriveSectorOfCluster < firstPhysicalDriveSectorToMark) continue; //current cluster before selection
-        if (firstDriveSectorOfCluster > lastPhysicalDriveSectorToMark) break; //current cluster after selection
+        if (firstPhysicalDriveSectorToMark > lastPhysicalDriveSectorToMark) continue;
 
-        if (BadClusterFile->IsInList(clusterNumber))
+        BIG_INT firstSectorToMark = (firstPhysicalDriveSectorToMark - firstDriveSector) / cluster_factor;
+        BIG_INT lastSectorToMark = (lastPhysicalDriveSectorToMark - firstDriveSector) / cluster_factor;
+        for (BIG_INT clusterNumber = firstSectorToMark; clusterNumber <= lastSectorToMark; ++clusterNumber)
         {
-            skippedAlreadyBadClusters += (1);
-        	continue;
+            if (clusterNumber == lastProcessedCluster) continue; 
+
+            lastProcessedCluster = clusterNumber;
+
+            if (BadClusterFile->IsInList(clusterNumber))
+            {
+                ++skippedAlreadyBadClusters;
+                continue;
+            }
+
+            if (!bitmap->IsFree(clusterNumber, 1))
+            {
+                ++skippedInUseClusters;
+                continue;
+            }
+
+            // Add the bad clusters to the bad cluster list.
+            if (!BadClusters->Add(clusterNumber))
+            {
+                Message->Out("An unspecified error occurred.");
+                return FALSE;
+            }
+
+            // Mark the bad clusters as allocated in the bitmap.
+            bitmap->SetAllocated(clusterNumber, 1);
+
+            ++markedClusters;
         }
-    	
-        if (!bitmap->IsFree(clusterNumber, 1))
-        {
-            skippedInUseClusters += (1);
-            continue;
-        }
-
-        // Add the bad clusters to the bad cluster list.
-        if (!BadClusters->Add(clusterNumber, 1))
-        {
-            Message->Out("An unspecified error occurred.");
-            return FALSE;
-        }
-
-        // Mark the bad clusters as allocated in the bitmap.
-        bitmap->SetAllocated(clusterNumber, 1);
-
-        markedClusters += (1);
-
-        //checked += (1);
-
-        //if (100 * checked / total_to_check > percent_done)
-        //{
-        //    percent_done = (100 * checked / total_to_check).GetLowPart();
-        //}
     }
 
-    Message->Out("The number of clusters skipped since they already marked bad: ", skippedAlreadyBadClusters.GetQuadPart());
-    Message->Out("The number of clusters skipped since they are in use: ", skippedInUseClusters.GetQuadPart());
-    Message->Out("The number of selected clusters: ",markedClusters.GetQuadPart());
-	
-    //percent_done = 100;
+    if (!physicalDriveSectorsTargets.empty())
+    {
+        Message->Out("The number of clusters skipped since they already marked bad: ", skippedAlreadyBadClusters.GetQuadPart());
+        Message->Out("The number of clusters skipped since they are in use: ", skippedInUseClusters.GetQuadPart());
+        Message->Out("The number of selected clusters: ", markedClusters.GetQuadPart());
+    }
 
     return TRUE;
 }

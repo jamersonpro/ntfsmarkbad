@@ -77,6 +77,26 @@ typedef ULONG CLONG;
     (CHAR *)((ULONG_PTR)(ArgumentPointer)) != (CHAR *)(NULL) )
 
 
+struct sectors_range
+{
+    sectors_range(__int64 firstSector, __int64 lastSector)
+    {
+        this->firstSector = firstSector;
+        this->lastSector = lastSector;
+    }
 
+    __int64 firstSector;
+    __int64 lastSector;
+
+    bool contains(__int64 sector) const
+    {
+        return firstSector <= sector && sector <= lastSector;
+    }
+
+    bool operator<(const sectors_range& another) const
+    {
+        return  (firstSector < another.firstSector) || (firstSector == another.firstSector && lastSector < another.lastSector);
+    }
+};
 
 

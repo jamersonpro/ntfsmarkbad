@@ -169,8 +169,7 @@ Return Value:
 
 BOOLEAN
 VOL_LIODPDRV::MarkBad(
-    IN      __int64   firstPhysicalDriveSector,
-    IN      __int64   lastPhysicalDriveSector,
+    IN const std::vector<sectors_range>& physicalDriveSectorsTargets,
     IN OUT  PMESSAGE    Message
 )
 {
@@ -178,5 +177,5 @@ VOL_LIODPDRV::MarkBad(
         return FALSE;
     }
 
-    return _sa->MarkBad(firstPhysicalDriveSector, lastPhysicalDriveSector, Message);
+    return _sa->MarkBad(physicalDriveSectorsTargets, Message);
 }

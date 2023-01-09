@@ -13,6 +13,9 @@ Abstract:
 #pragma once
 
 
+#include <utility>
+#include <vector>
+
 #include "drive.hxx"
 #include "numset.hxx"
 
@@ -35,9 +38,6 @@ typedef ULONG VOLID;
 
 #define MAXVOLNAME 11
 
-#define AUTOCHK_TIMEOUT                 10              // 10 seconds before initiating autochk
-#define MAX_AUTOCHK_TIMEOUT_VALUE       (3*24*3600)     // 3 days maximum
-
 enum FIX_LEVEL {
     CheckOnly,
     TotalFix,
@@ -57,8 +57,7 @@ class VOL_LIODPDRV : public LOG_IO_DP_DRIVE {
 
         BOOLEAN
             MarkBad(
-                IN      __int64   firstPhysicalDriveSector,
-                IN      __int64   lastPhysicalDriveSector,
+                IN     const std::vector<sectors_range>& physicalDriveSectorsTargets,
                 IN OUT  PMESSAGE    Message
             );
 	

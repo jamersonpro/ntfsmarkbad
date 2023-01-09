@@ -32,8 +32,7 @@ public:
 	VIRTUAL
 	BOOLEAN
 	MarkBad(
-		IN __int64 firstPhysicalDriveSector,
-		IN __int64 lastPhysicalDriveSector,
+		IN const std::vector<sectors_range>& physicalDriveSectorsTargets,
 		IN OUT PMESSAGE Message
 	) PURE;
 

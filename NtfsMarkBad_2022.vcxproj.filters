@@ -377,6 +377,9 @@
     <ClInclude Include="untfs\inc\upfile.hxx">
       <Filter>Header Files\untfs</Filter>
     </ClInclude>
+    <ClInclude Include="TextUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />

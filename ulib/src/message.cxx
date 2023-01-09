@@ -98,37 +98,3 @@ Return Value:
 }
 
 
-void MESSAGE::Out(const char* str)
-{
-    std::cout << str << "\n";
-}
-
-void MESSAGE::Out(const char* str1, const char* str2)
-{
-    std::cout << str1 << str2 << "\n";
-}
-void MESSAGE::Out(const char* str1, const char* str2, const char* str3)
-{
-    std::cout << str1 << str2 << str3 << "\n";
-}
-
-void MESSAGE::Out(const char* str, LONGLONG number)
-{
-    std::cout << str << number << "\n";
-}
-
-void MESSAGE::Out(const char* str1, LONGLONG number, const char* str2)
-{
-    std::cout << str1 << number << str2 << "\n";
-}
-
-void MESSAGE::Out(const char* str1, LONGLONG number1, const char* str2, LONGLONG number2, const char* str3)
-{
-    std::cout << str1 << number1 << str2 << number2 << str3 << "\n";
-}
-
-void MESSAGE::Out(const char* str1, LONGLONG number1, const char* str2, LONGLONG number2, const char* str3, LONGLONG number3, const char* str4)
-{
-    std::cout << str1 << number1 << str2 << number2 << str3 << number3 << str4 << "\n";
-}
-

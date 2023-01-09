@@ -69,8 +69,7 @@ public:
     BOOLEAN
         MarkInFreeSpace(
             IN OUT  PNTFS_MASTER_FILE_TABLE Mft,
-            IN      __int64   firstPhysicalDriveSector,
-            IN      __int64   lastPhysicalDriveSector,
+            IN      const std::vector<sectors_range>& physicalDriveSectorsTargets,
             IN OUT  PNUMBER_SET             BadClusters,
             IN      PNTFS_BAD_CLUSTER_FILE  BadClusterFile,
             IN OUT  PMESSAGE                Message
@@ -79,8 +78,7 @@ public:
     VIRTUAL
         BOOLEAN
         MarkBad(
-            IN      __int64   ClusterId,
-            IN      __int64   ClusterCount,
+            IN const std::vector<sectors_range>& physicalDriveSectorsTargets,
             IN OUT  PMESSAGE    Message
         );
 

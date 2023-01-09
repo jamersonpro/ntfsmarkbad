@@ -291,6 +291,21 @@ class BIG_INT {
             IN const BIG_INT    Right
             );
 
+        // Define prefix increment operator.
+        BIG_INT& operator++()
+        {
+            this->x++;
+            return *this;
+        }
+
+        // Define postfix increment operator.
+        BIG_INT operator++(int)
+        {
+            BIG_INT temp = *this;
+            temp.x++;
+            return temp;
+        }
+
         private:
 
         __int64         x;
