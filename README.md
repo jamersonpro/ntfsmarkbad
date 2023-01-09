@@ -72,7 +72,7 @@ To mark sectors 100001, 100003, 100006-100010 (physical sector numbers) on volum
 
 ```
 100001
-100002
+100003
 100006 100010
 ```
 
