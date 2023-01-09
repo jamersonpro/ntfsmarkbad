@@ -869,13 +869,9 @@ Return Value:
 
 --*/
 {
-    PLOG_IO_DP_DRIVE    drive;
-    PNTFS_BITMAP        bitmap;
-    ULONG               cluster_factor;
+    Message->Out("Scanning volume...");
 
-    Message->Out("Scanning free space...");
-
-    drive = Mft->GetDataAttribute()->GetDrive();
+    PLOG_IO_DP_DRIVE drive = Mft->GetDataAttribute()->GetDrive();
 
     BIG_INT firstDriveSector = drive->QueryHiddenSectors();
     BIG_INT lastDriveSector = firstDriveSector + drive->QuerySectors() - 1;
@@ -883,8 +879,14 @@ Return Value:
     Message->Out("First volume sector: ", firstDriveSector.GetQuadPart());
     Message->Out("Last volume sector: ", lastDriveSector.GetQuadPart());
 
-    bitmap = Mft->GetVolumeBitmap();
-    cluster_factor = Mft->QueryClusterFactor();
+    PNTFS_BITMAP bitmap = Mft->GetVolumeBitmap();
+    BIG_INT clustersCount = bitmap->QuerySize();
+    ULONG clusterFactor = Mft->QueryClusterFactor();
+
+    ULONG sectorSize = drive->QuerySectorSize();
+    Message->Out("Bytes per sector: ", sectorSize);
+    Message->Out("Sectors per cluster: ", clusterFactor);
+    Message->Out("Total cluster count: ", clustersCount.GetQuadPart());
     
     BIG_INT skippedAlreadyBadClusters = 0;
     BIG_INT skippedInUseClusters = 0;
@@ -894,23 +896,25 @@ Return Value:
 
     for (std::vector<sectors_range>::const_iterator physicalDriveSectorsPair = physicalDriveSectorsTargets.begin(); physicalDriveSectorsPair != physicalDriveSectorsTargets.end(); ++physicalDriveSectorsPair)
     {
-        BIG_INT firstPhysicalDriveSectorToMark = (unsigned __int64)physicalDriveSectorsPair->firstSector;
+        BIG_INT firstPhysicalDriveSectorToMark = physicalDriveSectorsPair->firstSector;
         if (firstPhysicalDriveSectorToMark < firstDriveSector) firstPhysicalDriveSectorToMark = firstDriveSector;
         if (firstPhysicalDriveSectorToMark > lastDriveSector) continue;
 
-    	BIG_INT lastPhysicalDriveSectorToMark = (unsigned __int64)physicalDriveSectorsPair->lastSector;
+    	BIG_INT lastPhysicalDriveSectorToMark = physicalDriveSectorsPair->lastSector;
         if (lastPhysicalDriveSectorToMark > lastDriveSector) lastPhysicalDriveSectorToMark = lastDriveSector;
         if (lastPhysicalDriveSectorToMark < firstDriveSector) continue;
 
         if (firstPhysicalDriveSectorToMark > lastPhysicalDriveSectorToMark) continue;
 
-        BIG_INT firstSectorToMark = (firstPhysicalDriveSectorToMark - firstDriveSector) / cluster_factor;
-        BIG_INT lastSectorToMark = (lastPhysicalDriveSectorToMark - firstDriveSector) / cluster_factor;
-        for (BIG_INT clusterNumber = firstSectorToMark; clusterNumber <= lastSectorToMark; ++clusterNumber)
+        BIG_INT firstClusterToMark = (firstPhysicalDriveSectorToMark - firstDriveSector) / clusterFactor;
+        BIG_INT lastClusterToMark = (lastPhysicalDriveSectorToMark - firstDriveSector) / clusterFactor;
+        for (BIG_INT clusterNumber = firstClusterToMark; clusterNumber <= lastClusterToMark; ++clusterNumber)
         {
             if (clusterNumber == lastProcessedCluster) continue; 
 
             lastProcessedCluster = clusterNumber;
+
+            if (clusterNumber < 0 || clusterNumber >= clustersCount) continue; //check clusterNumber is valid 
 
             if (BadClusterFile->IsInList(clusterNumber))
             {

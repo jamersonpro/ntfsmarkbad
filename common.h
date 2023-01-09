@@ -79,16 +79,16 @@ typedef ULONG CLONG;
 
 struct sectors_range
 {
-    sectors_range(__int64 firstSector, __int64 lastSector)
+    sectors_range(unsigned __int64 firstSector, unsigned __int64 lastSector)
     {
         this->firstSector = firstSector;
         this->lastSector = lastSector;
     }
 
-    __int64 firstSector;
-    __int64 lastSector;
+    unsigned __int64 firstSector;
+    unsigned __int64 lastSector;
 
-    bool contains(__int64 sector) const
+    bool contains(unsigned __int64 sector) const
     {
         return firstSector <= sector && sector <= lastSector;
     }
