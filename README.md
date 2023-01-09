@@ -19,12 +19,12 @@ To clear the list of bad clusters reformat volume or run CHKDSK /B to rescan clu
 
 ## Changelog
 
-0.0.1 - Inital version.
-0.0.2 - Added batch mode and info mode.
+* 0.0.1 - Inital version.
+* 0.0.2 - Added batch mode and info mode.
 
 ## Basic usage
 
-NTFSMARKBAD <drive>: <first_sector_number> <last_sector_number>
+`NTFSMARKBAD <drive>: <first_sector_number> <last_sector_number>`
 
 ### Example
 
@@ -56,7 +56,7 @@ CHKDSK D: /F
 
 ## Batch mode
 
-NTFSMARKBAD <drive>: /B <sector_numbers_file>
+`NTFSMARKBAD <drive>: /B <sector_numbers_file>`
 
 First, create a text file with bad sector numbers (physical sector numbers). 
 Each line of the file must contain the bad sector number or the first and last sector numbers of the bad area.
@@ -102,7 +102,7 @@ CHKDSK D: /F
 
 ## Info mode
 
-NTFSMARKBAD <drive>:
+`NTFSMARKBAD <drive>:`
 
 Specify only drive to display volume information. No changes will be made to the file system.
 
